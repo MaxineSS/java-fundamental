@@ -5,30 +5,38 @@ import java.util.ListIterator;
 
 public class PlayList {
   private String title;
-  private LinkedList<Song> playList;
+  private LinkedList<Song> playlist;
 
-  public PlayList(String title, LinkedList<Song> playList) {
+  public PlayList(String title) {
     this.title = title;
-    this.playList = playList;
+    this.playlist = new LinkedList<Song>();
   }
 
-  // add song to this playlist
-  public boolean addSong(Song song) {
-
-  }
-  // delete song from this playlist
-  public boolean removeSong(Song song){
-
-  }
   // list songs from this playlist
-  public void listSongs(LinkedList<Song> myPlayList) {
-    ListIterator<Song> list = myPlayList.listIterator();
+  public void listSongs() {
+    ListIterator<Song> list = this.playlist.listIterator();
 
     while(list.hasNext()) {
       System.out.printf(
-        "[%d] Title: %s, Duration: %d",
-       list.nextIndex(), list.next().getTitle(), list.next().getDuration());
+        "[%d] %s\n",
+       list.nextIndex(), list.next().toString());
     }
-    System.out.println("------End of the list");
+    System.out.println("\n------End of the list\n" +
+                      this.playlist.size() + " songs");
+  }
+
+  public void add(Song song) {
+    this.playlist.add(song);
+  }
+  public void delete() {
+    this.playlist.remove();
+  }
+  public int size() {
+    return this.playlist.size();
+  }
+
+  public ListIterator<Song> traverse() {
+    ListIterator<Song> listIterator = playlist.listIterator();
+    return listIterator;
   }
 }
